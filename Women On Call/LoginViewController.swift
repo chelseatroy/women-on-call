@@ -9,12 +9,29 @@
 import UIKit
 
 class ViewController: UIViewController {
-
-//    @IBOutlet weak var nextPageButton: UIButton!
+    
+    @IBOutlet weak var usernameTextField: UITextField!
+    @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var passwordTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+
+        let urlPath:String = "http://www.womenoncall.org/api/v1/users/login"
+        let url: NSURL = NSURL(string: urlPath)!
+        let request: NSMutableURLRequest = NSMutableURLRequest(URL: url)
+        request.HTTPMethod = "POST"
+        let jsonPost = "login=ceceliastory%40gmail.com&password=pivotal1"
+        request.HTTPBody =  jsonPost.dataUsingEncoding(NSUTF8StringEncoding)
+        
+        let session = NSURLSession.sharedSession()
+        let task = session.dataTaskWithRequest(request) {
+            (let data, let response, let error) in
+            let dataString = NSString(data: data!, encoding: NSUTF8StringEncoding)
+            print(dataString)
+        }
+        task.resume()
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -22,10 +39,6 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-//    @IBAction func noLoginNextPageButtonPressed(sender: AnyObject) {
-//        let organizationsViewController = OrganizationsViewController()
-//        presentViewController(organizationsViewController, animated: true, completion: nil)
-//    }
 
 }
 
