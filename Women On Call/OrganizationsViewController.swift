@@ -1,14 +1,26 @@
 import UIKit
 
 class Organization {
-    let id: String
+    let id: Int
     let name: String
     let zipCode: String
     
-    init(id: String, name: String, zipCode: String) {
+    init(id: Int, name: String, zipCode: String) {
         self.id = id
         self.name = name
         self.zipCode = zipCode
+    }
+}
+
+class Posting {
+    let title: String?
+    let contact: String?
+    let skill: String?
+    
+    init(title: String, contact: String, skill: String) {
+        self.title = title
+        self.contact = contact
+        self.skill = skill
     }
 }
 
@@ -53,12 +65,18 @@ class OrganizationsViewController: UITableViewController {
                         // construct your model objects here
                         print(item["name"])
                         let organization = Organization(
-                            id: item["id"] as! String,
+                            id: item["id"] as! Int,
                             name: item["name"] as! String,
                             zipCode: item["zip_code"] as! String)
                         
-                        self.insertNewObject(organization)
+                        //self.insertNewObject(organization)
                     }
+                    
+                    let posting1 = Posting(title: "Awesome Posting", contact: "me@me.com", skill: "Public Relations")
+                    let posting2 = Posting(title: "Also Awesome Posting", contact: "you@you.com", skill: "Space Flight")
+                    
+                    self.insertNewObject(posting1)
+                    self.insertNewObject(posting2)
                 }
             }
             
