@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F36117D1CB010910048AAEC /* OrganizationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F36117C1CB010910048AAEC /* OrganizationsViewController.swift */; };
 		AEB9C3221CAA04E7001163EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB9C3211CAA04E7001163EE /* AppDelegate.swift */; };
 		AEB9C3241CAA04E7001163EE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB9C3231CAA04E7001163EE /* LoginViewController.swift */; };
 		AEB9C3271CAA04E7001163EE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AEB9C3251CAA04E7001163EE /* Main.storyboard */; };
@@ -27,6 +28,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3F36117C1CB010910048AAEC /* OrganizationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrganizationsViewController.swift; sourceTree = "<group>"; };
 		AEB9C31E1CAA04E7001163EE /* Women On Call.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Women On Call.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AEB9C3211CAA04E7001163EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AEB9C3231CAA04E7001163EE /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -86,6 +88,7 @@
 				AEB9C32D1CAA04E7001163EE /* LaunchScreen.storyboard */,
 				AEB9C3301CAA04E7001163EE /* Info.plist */,
 				AEB9C3281CAA04E7001163EE /* Women_On_Call.xcdatamodeld */,
+				3F36117C1CB010910048AAEC /* OrganizationsViewController.swift */,
 			);
 			path = "Women On Call";
 			sourceTree = "<group>";
@@ -201,6 +204,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AEB9C3241CAA04E7001163EE /* LoginViewController.swift in Sources */,
+				3F36117D1CB010910048AAEC /* OrganizationsViewController.swift in Sources */,
 				AEB9C32A1CAA04E7001163EE /* Women_On_Call.xcdatamodeld in Sources */,
 				AEB9C3221CAA04E7001163EE /* AppDelegate.swift in Sources */,
 			);
