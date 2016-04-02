@@ -9,7 +9,7 @@
 import UIKit
 
 class ViewController: UIViewController, UITextFieldDelegate {
-
+    
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -46,12 +46,21 @@ class ViewController: UIViewController, UITextFieldDelegate {
         let task = session.dataTaskWithRequest(request) {
             (let data, let response, let error) in
             let dataString = NSString(data: data!, encoding: NSUTF8StringEncoding)
+            
             print(dataString)
+            print(error)
+            if let json: NSDictionary = try! NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as? NSDictionary {
+                if (json["error"] == nil) {
+                    let vc : AnyObject! = self.storyboard!.instantiateViewControllerWithIdentifier("organizationsViewController")
+                    self.showViewController(vc as! UIViewController, sender: vc)
+                }
+            }
+            
         }
-                task.resume()
-
+        task.resume()
+        
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -61,7 +70,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         passwordTextField.resignFirstResponder()
         self.view.endEditing(true)
     }
-
-
+    
+    
 }
 

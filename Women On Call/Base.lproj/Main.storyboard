@@ -63,7 +63,7 @@
         <!--Organizations View Controller-->
         <scene sceneID="ft6-Kd-UvX">
             <objects>
-                <tableViewController id="mQT-rX-PGA" customClass="OrganizationsViewController" customModule="Women_On_Call" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="organizationsViewController" id="mQT-rX-PGA" customClass="OrganizationsViewController" customModule="Women_On_Call" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="UZc-oF-Mjd">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
