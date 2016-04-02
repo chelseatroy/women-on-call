@@ -20,18 +20,15 @@ class ViewController: UIViewController {
     }
     
     @IBAction func loginClicked(sender: AnyObject) {
-        print("HEEYYYY")
-        
-        // get text from text fields
-        var username = usernameTextField.text
-        var password = passwordTextField.text
-        
+        let username = usernameTextField.text!
+        let password = passwordTextField.text!
         
         let urlPath:String = "http://www.womenoncall.org/api/v1/users/login"
         let url: NSURL = NSURL(string: urlPath)!
         let request: NSMutableURLRequest = NSMutableURLRequest(URL: url)
         request.HTTPMethod = "POST"
         let jsonPost = "login=\(username)&password=\(password)"
+        print(jsonPost)
         request.HTTPBody =  jsonPost.dataUsingEncoding(NSUTF8StringEncoding)
         
         let session = NSURLSession.sharedSession()
