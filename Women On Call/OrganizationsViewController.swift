@@ -28,6 +28,11 @@ class OrganizationsViewController: UITableViewController {
     
     var objects = NSMutableArray()
     
+    func setUpWith(data: NSDictionary) {
+        print("HERE'S SOME DATA")
+        print(data)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

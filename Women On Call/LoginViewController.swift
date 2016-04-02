@@ -51,8 +51,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
             print(error)
             if let json: NSDictionary = try! NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as? NSDictionary {
                 if (json["error"] == nil) {
-                    let vc : AnyObject! = self.storyboard!.instantiateViewControllerWithIdentifier("organizationsViewController")
-                    self.showViewController(vc as! UIViewController, sender: vc)
+                    let vc : OrganizationsViewController! = self.storyboard!.instantiateViewControllerWithIdentifier("organizationsViewController") as! OrganizationsViewController
+                    vc.setUpWith(json)
+                    self.showViewController(vc, sender: vc)
                 }
             }
             
