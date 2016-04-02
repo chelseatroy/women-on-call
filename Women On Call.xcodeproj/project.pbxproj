@@ -155,7 +155,7 @@
 				TargetAttributes = {
 					AEB9C31D1CAA04E7001163EE = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = R2S43FGSKN;
+						DevelopmentTeam = KA926F7NRG;
 					};
 					AEB9C3341CAA04E7001163EE = {
 						CreatedOnToolsVersion = 7.2;
@@ -342,7 +342,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "Women On Call/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "Chi-Ladies-Hack.Women-On-Call";
+				PRODUCT_BUNDLE_IDENTIFIER = WOC;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -356,7 +356,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "Women On Call/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "Chi-Ladies-Hack.Women-On-Call";
+				PRODUCT_BUNDLE_IDENTIFIER = WOC;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
