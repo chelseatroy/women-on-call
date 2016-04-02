@@ -13,12 +13,16 @@ class Organization {
 }
 
 class Posting {
-    var title = "Default Title"
-    var contact = "No Contact Information Available"
-    var skill = "No Skill Listed"
+    let orgId: Int?
+    let title: String?
+    let description: String?
+    let contact: String?
+    let skill: String?
     
-    init(title: String, contact: String, skill: String) {
+    init(orgId: Int, title: String, description: String, contact: String, skill: String) {
+        self.orgId = orgId
         self.title = title
+        self.description = description
         self.contact = contact
         self.skill = skill
     }
@@ -27,11 +31,9 @@ class Posting {
 class OrganizationsViewController: UITableViewController {
     
     var objects = NSMutableArray()
+    var organizationIDs = NSMutableArray()
+    var allPostings = NSMutableArray()
     
-    func setUpWith(data: NSDictionary) {
-        print("HERE'S SOME DATA")
-        print(data)
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,54 +47,73 @@ class OrganizationsViewController: UITableViewController {
     func data_request() {
         
         let apiKey = "API_KEY"
-        //let paramString = "?api_key=" + apiKey
-        let url:NSURL = NSURL(string: "http://www.womenoncall.org/api/v1/organizations?api_key="+apiKey)!
         let session = NSURLSession.sharedSession()
         
-        let request = NSMutableURLRequest(URL: url)
+        let organizationURL:NSURL = NSURL(string: "http://www.womenoncall.org/api/v1/organizations?api_key="+apiKey)!
+        let request = NSMutableURLRequest(URL: organizationURL)
         request.HTTPMethod = "GET"
-        
-        //this is how you would add query params or request body to your request
-        
-        //request.HTTPBody = paramString.dataUsingEncoding(NSUTF8StringEncoding)
-        
+        organization_task(session, request: request, apiKey: apiKey)
+    }
+    
+    func organization_task(session: NSURLSession, request: NSMutableURLRequest, apiKey: String) {
         let task = session.dataTaskWithRequest(request) {
             (let data, let response, let error) in
             
             //stringified json in the response. You could print this to see it al as a string.
             if let json: NSDictionary = try! NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as? NSDictionary {
                 if let items = json["organizations"] as? NSArray {
-                    
                     for item in items {
                         // construct your model objects here
-                        print(item["name"])
-//                        let organization = Organization(
-//                            id: item["id"] as! Int,
-//                            name: item["name"] as! String,
-//                            zipCode: item["zip_code"] as! String)
-//                        
-                        //self.insertNewObject(organization)
+                        let city = item["city"] as? String
+                        if city != nil && city  == "Chicago" {
+                            self.organizationIDs.addObject(item["id"] as! Int)
+                            print("organizationIDs ::  "+(String(item["id"])))
+                        }
                     }
-                    
-                    let posting1 = Posting(
-                        title: "Awesome Posting",
-                        contact: "me@me.com",
-                        skill: "Public Relations")
-                    let posting2 = Posting(
-                        title: "Also Awesome Posting",
-                        contact: "you@you.com",
-                        skill: "Space Flight")
-                    
-                    self.insertNewObject(posting1)
-                    self.insertNewObject(posting2)
                 }
             }
-            
+            let postingsURL:NSURL = NSURL(string: "http://www.womenoncall.org/api/v1/postings?api_key="+apiKey)!
+            let postingRequest = NSMutableURLRequest(URL: postingsURL)
+            request.HTTPMethod = "GET"
+            self.postings_task(session, request: postingRequest)
         }
         
         task.resume()
     }
     
+    func postings_task(session: NSURLSession, request: NSMutableURLRequest) {
+        let task = session.dataTaskWithRequest(request) {
+            (let data, let response, let error) in
+            
+            //stringified json in the response. You could print this to see it al as a string.
+            //let dataString = NSString(data: data!, encoding: NSUTF8StringEncoding)
+            //print(dataString)
+            
+            if let json: NSDictionary = try! NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as? NSDictionary {
+                if let items = json["postings"] as? NSArray {
+                    for item in items {
+                        // construct your model objects here
+                        let currentId = item["organization_id"] as! Int
+                        if self.organizationIDs .containsObject(currentId) {
+                            let posting = Posting(
+                                orgId: item["organization_id"] as! Int,
+                                title: item["title"] as! String,
+                                description: item["custom_project_description"] as! String,
+                                contact: item["contact"] as! String,
+                                skill: item["skill"] as! String)
+                            
+                            
+                            self.insertNewObject(posting)
+                            self.allPostings.addObject(posting)
+                            print("posting ::  "+(String(item["organization_id"])))
+                        }
+                    }
+                }
+            }
+        }
+        
+        task.resume()
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -113,6 +134,7 @@ class OrganizationsViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        NSLog("%d objects count", objects.count)
         return objects.count
     }
     
@@ -124,7 +146,7 @@ class OrganizationsViewController: UITableViewController {
         cell.titleLabel.text = posting.title
         cell.postingNameLabel.text = posting.contact
         cell.postingSkillLabel.text = posting.skill
-
+        
         return cell
     }
     
@@ -141,6 +163,4 @@ class OrganizationsViewController: UITableViewController {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
         }
     }
-   
-    
 }
