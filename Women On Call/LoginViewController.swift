@@ -54,6 +54,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
                     let vc : OrganizationsViewController! = self.storyboard!.instantiateViewControllerWithIdentifier("organizationsViewController") as! OrganizationsViewController
                     //vc.setUpWith(json)
                     self.showViewController(vc, sender: vc)
+                } else {
+                    let dialog = UIAlertController(title: "Error",
+                                                   message: "Incorrect username or password.",
+                                                   preferredStyle: UIAlertControllerStyle.Alert)
+                    dialog.addAction(UIAlertAction(title: "Please Try Again", style: UIAlertActionStyle.Default, handler: nil))
+                    self.presentViewController(dialog, animated: false, completion: nil)
                 }
             }
             
