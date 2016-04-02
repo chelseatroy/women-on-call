@@ -65,12 +65,13 @@
         <scene sceneID="ft6-Kd-UvX">
             <objects>
                 <tableViewController storyboardIdentifier="organizationsViewController" id="mQT-rX-PGA" customClass="OrganizationsViewController" customModule="Women_On_Call" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" sectionHeaderHeight="28" sectionFooterHeight="28" id="UZc-oF-Mjd">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="120" sectionHeaderHeight="28" sectionFooterHeight="28" id="UZc-oF-Mjd">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="separatorColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
+                        <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PostingTableViewCell" rowHeight="120" id="b3H-81-QOb" customClass="PostingTableViewCell" customModule="Women_On_Call" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="600" height="120"/>
@@ -97,6 +98,10 @@
                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="70e-Zt-oFJ">
+                                            <rect key="frame" x="0.0" y="99" width="600" height="20.5"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </view>
                                     </subviews>
                                     <color key="backgroundColor" red="0.66274509803921566" green="0.74901960784313726" blue="0.36470588235294116" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
@@ -112,7 +117,7 @@
                                 <accessibility key="accessibilityConfiguration" identifier="PostingTableViewCell">
                                     <accessibilityTraits key="traits" notEnabled="YES"/>
                                 </accessibility>
-                                <inset key="separatorInset" minX="15" minY="0.0" maxX="10" maxY="0.0"/>
+                                <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
                                 <connections>
                                     <outlet property="postingNameLabel" destination="409-Ta-kfR" id="yXa-Kb-Nuq"/>
                                     <outlet property="postingSkillLabel" destination="Iai-iw-ufS" id="uxJ-Zc-lZh"/>
@@ -129,6 +134,23 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jmb-vo-UFf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1056" y="353"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="xmB-Hf-Byx">
+            <objects>
+                <viewController id="6Uo-li-FnU" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="gwn-Jm-Khf"/>
+                        <viewControllerLayoutGuide type="bottom" id="rzE-wN-YUy"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="2FB-6E-8aP">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aj6-Jd-a5A" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
         </scene>
     </scenes>
 </document>
