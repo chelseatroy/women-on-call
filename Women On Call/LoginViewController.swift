@@ -14,6 +14,14 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var passwordTextField: UITextField!
     
+    override func shouldAutorotate() -> Bool {
+        return false
+    }
+    
+    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+        return UIInterfaceOrientationMask.Portrait
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         usernameTextField.delegate = self
@@ -31,15 +39,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func loginClicked(sender: AnyObject) {
-        let username = usernameTextField.text!
-        let password = passwordTextField.text!
-        
-        let urlPath:String = "http://www.womenoncall.org/api/v1/users/login"
-        let url: NSURL = NSURL(string: urlPath)!
-        let request: NSMutableURLRequest = NSMutableURLRequest(URL: url)
+        let request: NSMutableURLRequest = NSMutableURLRequest(URL: NSURL(string: "http://www.womenoncall.org/api/v1/users/login")!)
+
+        let jsonPost = "login=\(usernameTextField.text!)&password=\(passwordTextField.text!)"
         request.HTTPMethod = "POST"
-        let jsonPost = "login=\(username)&password=\(password)"
-        print(jsonPost)
         request.HTTPBody =  jsonPost.dataUsingEncoding(NSUTF8StringEncoding)
         
         let session = NSURLSession.sharedSession()
@@ -48,7 +51,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
             let dataString = NSString(data: data!, encoding: NSUTF8StringEncoding)
             
             print(dataString)
-            print(error)
             if let json: NSDictionary = try! NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as? NSDictionary {
                 if (json["error"] == nil) {
                     let vc : OrganizationsViewController! = self.storyboard!.instantiateViewControllerWithIdentifier("organizationsViewController") as! OrganizationsViewController
@@ -67,7 +69,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
             
         }
         task.resume()
-        
     }
     
     override func didReceiveMemoryWarning() {
@@ -78,8 +79,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
         usernameTextField.resignFirstResponder()
         passwordTextField.resignFirstResponder()
         self.view.endEditing(true)
-    }
-    
-    
+    }    
 }
 
