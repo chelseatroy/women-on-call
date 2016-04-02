@@ -10,18 +10,28 @@ import UIKit
 
 class ViewController: UIViewController {
     
+
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var passwordTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+    }
+    
+    @IBAction func loginClicked(sender: AnyObject) {
+        print("HEEYYYY")
+        
+        // get text from text fields
+        var username = usernameTextField.text
+        var password = passwordTextField.text
+        
+        
         let urlPath:String = "http://www.womenoncall.org/api/v1/users/login"
         let url: NSURL = NSURL(string: urlPath)!
         let request: NSMutableURLRequest = NSMutableURLRequest(URL: url)
         request.HTTPMethod = "POST"
-        let jsonPost = "login=ceceliastory%40gmail.com&password=pivotal1"
+        let jsonPost = "login=\(username)&password=\(password)"
         request.HTTPBody =  jsonPost.dataUsingEncoding(NSUTF8StringEncoding)
         
         let session = NSURLSession.sharedSession()
@@ -30,13 +40,12 @@ class ViewController: UIViewController {
             let dataString = NSString(data: data!, encoding: NSUTF8StringEncoding)
             print(dataString)
         }
-        task.resume()
-        
+                task.resume()
+
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
 
