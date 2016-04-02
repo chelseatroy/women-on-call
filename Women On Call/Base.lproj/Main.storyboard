@@ -37,9 +37,12 @@
                                 <textInputTraits key="textInputTraits" spellCheckingType="no" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GWP-Tn-9A0">
-                                <rect key="frame" x="215" y="389" width="38" height="30"/>
-                                <color key="backgroundColor" red="0.32983574628444295" green="0.99489009380340576" blue="0.44716939125020433" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Login"/>
+                                <rect key="frame" x="137" y="389" width="121" height="30"/>
+                                <color key="backgroundColor" red="0.62745098039215685" green="0.68235294117647061" blue="0.30980392156862746" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" title="Sign In">
+                                    <color key="titleColor" red="0.99265426397323608" green="0.99590712785720825" blue="0.99583667516708374" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="loginClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="90i-6r-jeB"/>
                                 </connections>

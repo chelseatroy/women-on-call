@@ -8,8 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-    
+class ViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
@@ -17,6 +16,9 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        usernameTextField.delegate = self
+        passwordTextField.delegate = self
+        loginButton.layer.cornerRadius = 5
         
         UIGraphicsBeginImageContext(self.view.frame.size)
         UIImage(named: "login-background.png")?.drawInRect(self.view.bounds)
@@ -52,6 +54,12 @@ class ViewController: UIViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        usernameTextField.resignFirstResponder()
+        passwordTextField.resignFirstResponder()
+        self.view.endEditing(true)
     }
 
 
