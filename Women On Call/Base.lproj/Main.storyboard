@@ -69,13 +69,50 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="b3H-81-QOb">
-                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PostingTableViewCell" rowHeight="120" id="b3H-81-QOb" customClass="PostingTableViewCell" customModule="Women_On_Call" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="600" height="120"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="b3H-81-QOb" id="5es-jJ-OSL">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Posting Organization" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ERJ-Ei-45J">
+                                            <rect key="frame" x="19" y="8" width="397" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Posting Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="409-Ta-kfR">
+                                            <rect key="frame" x="19" y="34" width="107" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Posting Skill" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iai-iw-ufS">
+                                            <rect key="frame" x="19" y="60" width="93" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" red="0.038583828653439331" green="0.82080571338383834" blue="0.2225846054328145" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstItem="ERJ-Ei-45J" firstAttribute="leading" secondItem="5es-jJ-OSL" secondAttribute="leadingMargin" constant="16" id="6MN-6d-Fn2"/>
+                                        <constraint firstItem="409-Ta-kfR" firstAttribute="leading" secondItem="5es-jJ-OSL" secondAttribute="leadingMargin" constant="16" id="9be-a0-DLX"/>
+                                        <constraint firstAttribute="topMargin" secondItem="ERJ-Ei-45J" secondAttribute="top" constant="16" id="Zad-3f-KSQ"/>
+                                        <constraint firstItem="Iai-iw-ufS" firstAttribute="leading" secondItem="5es-jJ-OSL" secondAttribute="leadingMargin" constant="16" id="iiT-0P-LJQ"/>
+                                        <constraint firstItem="Iai-iw-ufS" firstAttribute="top" secondItem="409-Ta-kfR" secondAttribute="bottom" constant="10" id="nNT-1n-r0T"/>
+                                        <constraint firstItem="409-Ta-kfR" firstAttribute="top" secondItem="ERJ-Ei-45J" secondAttribute="bottom" constant="10" id="y8J-c0-eue"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <accessibility key="accessibilityConfiguration" identifier="PostingTableViewCell">
+                                    <accessibilityTraits key="traits" notEnabled="YES"/>
+                                </accessibility>
+                                <connections>
+                                    <outlet property="postingNameLabel" destination="409-Ta-kfR" id="yXa-Kb-Nuq"/>
+                                    <outlet property="postingSkillLabel" destination="Iai-iw-ufS" id="uxJ-Zc-lZh"/>
+                                    <outlet property="titleLabel" destination="ERJ-Ei-45J" id="v99-7d-CJB"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

@@ -13,9 +13,9 @@ class Organization {
 }
 
 class Posting {
-    let title: String?
-    let contact: String?
-    let skill: String?
+    var title = "Default Title"
+    var contact = "No Contact Information Available"
+    var skill = "No Skill Listed"
     
     init(title: String, contact: String, skill: String) {
         self.title = title
@@ -55,25 +55,28 @@ class OrganizationsViewController: UITableViewController {
             (let data, let response, let error) in
             
             //stringified json in the response. You could print this to see it al as a string.
-            let dataString = NSString(data: data!, encoding: NSUTF8StringEncoding)
-            print(dataString)
-            
             if let json: NSDictionary = try! NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as? NSDictionary {
                 if let items = json["organizations"] as? NSArray {
                     
                     for item in items {
                         // construct your model objects here
                         print(item["name"])
-                        let organization = Organization(
-                            id: item["id"] as! Int,
-                            name: item["name"] as! String,
-                            zipCode: item["zip_code"] as! String)
-                        
+//                        let organization = Organization(
+//                            id: item["id"] as! Int,
+//                            name: item["name"] as! String,
+//                            zipCode: item["zip_code"] as! String)
+//                        
                         //self.insertNewObject(organization)
                     }
                     
-                    let posting1 = Posting(title: "Awesome Posting", contact: "me@me.com", skill: "Public Relations")
-                    let posting2 = Posting(title: "Also Awesome Posting", contact: "you@you.com", skill: "Space Flight")
+                    let posting1 = Posting(
+                        title: "Awesome Posting",
+                        contact: "me@me.com",
+                        skill: "Public Relations")
+                    let posting2 = Posting(
+                        title: "Also Awesome Posting",
+                        contact: "you@you.com",
+                        skill: "Space Flight")
                     
                     self.insertNewObject(posting1)
                     self.insertNewObject(posting2)
@@ -109,10 +112,14 @@ class OrganizationsViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as UITableViewCell
+        let cellIdentifier = "PostingTableViewCell"
+        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! PostingTableViewCell
+        let posting = objects[indexPath.row] as! Posting
         
-        let object = objects[indexPath.row]
-        cell.textLabel!.text = object.name
+        cell.titleLabel.text = posting.title
+        cell.postingNameLabel.text = posting.contact
+        cell.postingSkillLabel.text = posting.skill
+
         return cell
     }
     
@@ -129,7 +136,6 @@ class OrganizationsViewController: UITableViewController {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
         }
     }
-    
-    
+   
     
 }
