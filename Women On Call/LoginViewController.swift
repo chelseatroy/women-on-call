@@ -52,8 +52,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
             if let json: NSDictionary = try! NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers) as? NSDictionary {
                 if (json["error"] == nil) {
                     let vc : OrganizationsViewController! = self.storyboard!.instantiateViewControllerWithIdentifier("organizationsViewController") as! OrganizationsViewController
-                    //vc.setUpWith(json)
-                    self.showViewController(vc, sender: vc)
+                    vc.setUpWith(json)
+                    NSOperationQueue.mainQueue().addOperationWithBlock {
+                        self.showViewController(vc, sender: vc)
+                    }
                 } else {
                     let dialog = UIAlertController(title: "Error",
                                                    message: "Incorrect username or password.",

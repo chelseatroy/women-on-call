@@ -33,7 +33,8 @@ class OrganizationsViewController: UITableViewController {
     var objects = NSMutableArray()
     var organizationIDs = NSMutableArray()
     var allPostings = NSMutableArray()
-    
+    var apiKey = String()
+    var skills = NSArray()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,17 +43,27 @@ class OrganizationsViewController: UITableViewController {
         // Do any additional setup after loading the view, typically from a nib.
     }
     
+    func setUpWith (json: NSDictionary) {
+        let user = json["api_user"]
+        let volunteer = user!["volunteer_profile"]
+        if let apiKey = user!["api_key"] as? String {
+            self.apiKey = apiKey
+        }
+        if let skills = volunteer!!["skills"] as? NSArray {
+            self.skills = skills
+        }
+    }
+    
     
     //This method makes the http request
     func data_request() {
-        
         let apiKey = "API_KEY"
         let session = NSURLSession.sharedSession()
         
-        let organizationURL:NSURL = NSURL(string: "http://www.womenoncall.org/api/v1/organizations?api_key="+apiKey)!
+        let organizationURL:NSURL = NSURL(string: "http://www.womenoncall.org/api/v1/organizations?api_key="+self.apiKey)!
         let request = NSMutableURLRequest(URL: organizationURL)
         request.HTTPMethod = "GET"
-        organization_task(session, request: request, apiKey: apiKey)
+        organization_task(session, request: request, apiKey: self.apiKey)
     }
     
     func organization_task(session: NSURLSession, request: NSMutableURLRequest, apiKey: String) {
@@ -102,10 +113,11 @@ class OrganizationsViewController: UITableViewController {
                                 contact: item["contact"] as! String,
                                 skill: item["skill"] as! String)
                             
-                            
-                            self.insertNewObject(posting)
-                            self.allPostings.addObject(posting)
-                            print("posting ::  "+(String(item["organization_id"])))
+                            if self.skills.containsObject(posting.skill!) {
+                                self.insertNewObject(posting)
+                                self.allPostings.addObject(posting)
+                                print("posting ::  "+(String(item["organization_id"])))
+                            }
                         }
                     }
                 }
