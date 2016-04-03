@@ -116,7 +116,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     //This method makes the http request
     func data_request() {
-        //let apiKey = "caf3e3a3455dba05b5bf048d7c9a2c15"
         let session = NSURLSession.sharedSession()
         
         let organizationURL:NSURL = NSURL(string: "http://www.womenoncall.org/api/v1/organizations?api_key="+self.apiKey)!
