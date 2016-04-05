@@ -16,6 +16,8 @@
 		AEB9C32C1CAA04E7001163EE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AEB9C32B1CAA04E7001163EE /* Assets.xcassets */; };
 		AEB9C32F1CAA04E7001163EE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AEB9C32D1CAA04E7001163EE /* LaunchScreen.storyboard */; };
 		AEB9C33A1CAA04E7001163EE /* Women_On_CallTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB9C3391CAA04E7001163EE /* Women_On_CallTests.swift */; };
+		AEC7B6181CB3592E006846BA /* Organization.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC7B6171CB3592E006846BA /* Organization.swift */; };
+		AEC7B61A1CB3593A006846BA /* Posting.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC7B6191CB3593A006846BA /* Posting.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +44,8 @@
 		AEB9C3351CAA04E7001163EE /* Women On CallTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Women On CallTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AEB9C3391CAA04E7001163EE /* Women_On_CallTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Women_On_CallTests.swift; sourceTree = "<group>"; };
 		AEB9C33B1CAA04E7001163EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AEC7B6171CB3592E006846BA /* Organization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Organization.swift; sourceTree = "<group>"; };
+		AEC7B6191CB3593A006846BA /* Posting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Posting.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +96,8 @@
 				AEB9C3281CAA04E7001163EE /* Women_On_Call.xcdatamodeld */,
 				3F36117C1CB010910048AAEC /* OrganizationsViewController.swift */,
 				3F36117E1CB04A9F0048AAEC /* PostingTableViewCell.swift */,
+				AEC7B6171CB3592E006846BA /* Organization.swift */,
+				AEC7B6191CB3593A006846BA /* Posting.swift */,
 			);
 			path = "Women On Call";
 			sourceTree = "<group>";
@@ -209,8 +215,10 @@
 			files = (
 				3F36117F1CB04A9F0048AAEC /* PostingTableViewCell.swift in Sources */,
 				AEB9C3241CAA04E7001163EE /* LoginViewController.swift in Sources */,
+				AEC7B61A1CB3593A006846BA /* Posting.swift in Sources */,
 				3F36117D1CB010910048AAEC /* OrganizationsViewController.swift in Sources */,
 				AEB9C32A1CAA04E7001163EE /* Women_On_Call.xcdatamodeld in Sources */,
+				AEC7B6181CB3592E006846BA /* Organization.swift in Sources */,
 				AEB9C3221CAA04E7001163EE /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
