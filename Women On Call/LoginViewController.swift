@@ -1,11 +1,3 @@
-//
-//  ViewController.swift
-//  Women On Call
-//
-//  Created by Pivotal on 2016-03-28.
-//  Copyright © 2016 Chi Ladies Hack. All rights reserved.
-//
-
 import UIKit
 
 class ViewController: UIViewController {

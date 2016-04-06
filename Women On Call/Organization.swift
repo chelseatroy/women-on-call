@@ -1,3 +1,5 @@
+import Foundation
+
 class Organization {
     let id: Int
     let name: String
@@ -9,3 +11,25 @@ class Organization {
         self.zipCode = zipCode
     }
 }
+
+struct Org {
+    let id   : Int
+    let city : String
+}
+
+extension Org {
+    init?(fromJSON json: NSDictionary) {
+        guard let
+            id   = json["id"] as? Int,
+            city = json["city"] as? String
+            
+            else {
+                return nil
+        }
+        
+        self.id = id
+        self.city = city
+    }
+}
+
+
