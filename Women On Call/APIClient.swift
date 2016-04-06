@@ -62,7 +62,7 @@ func makeLoginRequest(
 
 func getOrganizations(
     apiKey: String,
-    callback: Result<[Org], SimpleError> -> Void
+    callback: Result<[Organization], SimpleError> -> Void
 ) {
     let organizationURL = NSURL(string: "http://www.womenoncall.org/api/v1/organizations?api_key=\(apiKey)")! // TODO: maybe fix
     let request = NSMutableURLRequest(URL: organizationURL)
@@ -70,9 +70,9 @@ func getOrganizations(
     makeRequest(request) { result in
         switch result {
         case let .Success(jsonDictionary):
-            let orgs : [Org]
+            let orgs : [Organization]
             if let items = jsonDictionary["organizations"] as? NSArray {
-                orgs = items.flatMap{$0 as? NSDictionary}.flatMap(Org.init)
+                orgs = items.flatMap{$0 as? NSDictionary}.flatMap(Organization.init)
             } else {
                 orgs = []
             }
@@ -86,7 +86,7 @@ func getOrganizations(
 func getOrganizations(
     apiKey: String,
     inCity city: String,
-    callback: Result<[Org], SimpleError> -> Void
+    callback: Result<[Organization], SimpleError> -> Void
 ) {
     getOrganizations(apiKey) { result in
         switch result {
@@ -101,7 +101,7 @@ func getOrganizations(
 
 func getPostings(
     apiKey: String,
-    forOrgs orgs: [Org],
+    forOrgs orgs: [Organization],
     withSkills skills: [String],
     callback: Result<[VolunteerPosting], SimpleError> -> Void
 ) {

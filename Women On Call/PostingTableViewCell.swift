@@ -3,9 +3,7 @@ import UIKit
 class PostingTableViewCell: UITableViewCell {
 
     @IBOutlet weak var titleLabel: UILabel!
-    
     @IBOutlet weak var postingNameLabel: UILabel!
-    
     @IBOutlet weak var postingSkillLabel: UILabel!
     
     override func awakeFromNib() {
