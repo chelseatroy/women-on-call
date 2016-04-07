@@ -4,6 +4,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var passwordTextField: UITextField!
+    var indicator: UIActivityIndicatorView!
     
     override func shouldAutorotate() -> Bool {
         return false
@@ -16,9 +17,17 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         loginButton.layer.cornerRadius = 5
+        
+        indicator = UIActivityIndicatorView(frame: CGRectMake(0, 0, 40, 40))
+        indicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
+        indicator.center = self.view.center
+        view.addSubview(indicator)
     }
     
     @IBAction func loginClicked(sender: AnyObject) {
+        indicator.startAnimating()
+        indicator.backgroundColor = UIColor.whiteColor()
+
         makeLoginRequest(
             username: usernameTextField.text ?? "",
             password: passwordTextField.text ?? ""
@@ -41,6 +50,9 @@ class ViewController: UIViewController {
                             switch postingsResult {
                             case let .Success(postings):
                                 NSOperationQueue.mainQueue().addOperationWithBlock {
+                                    self.indicator.stopAnimating()
+                                    self.indicator.hidesWhenStopped = true
+                                    
                                     let vc : OrganizationsViewController! = self.storyboard!.instantiateViewControllerWithIdentifier("organizationsViewController") as! OrganizationsViewController
                                     vc.postings = postings
                                     self.showViewController(vc, sender: vc)
