@@ -26,7 +26,6 @@ class ViewController: UIViewController {
     
     @IBAction func loginClicked(sender: AnyObject) {
         indicator.startAnimating()
-        indicator.backgroundColor = UIColor.whiteColor()
 
         makeLoginRequest(
             username: usernameTextField.text ?? "",
