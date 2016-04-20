@@ -1,10 +1,15 @@
 import UIKit
+import CoreLocation
 
 class ViewController: UIViewController {
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var passwordTextField: UITextField!
     var indicator: UIActivityIndicatorView!
+    var locationManager: CLLocationManager!
+    
+    var latitude: Double?
+    var longitude: Double?
     
     override func shouldAutorotate() -> Bool {
         return false
@@ -22,11 +27,16 @@ class ViewController: UIViewController {
         indicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
         indicator.center = self.view.center
         view.addSubview(indicator)
+        
+        locationManager = CLLocationManager();
+        locationManager.delegate = self;
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.startUpdatingLocation();
     }
     
     @IBAction func loginClicked(sender: AnyObject) {
         indicator.startAnimating()
-
+        
         makeLoginRequest(
             username: usernameTextField.text ?? "",
             password: passwordTextField.text ?? ""
@@ -82,6 +92,28 @@ class ViewController: UIViewController {
         usernameTextField.resignFirstResponder()
         passwordTextField.resignFirstResponder()
         self.view.endEditing(true)
-    }    
+    }
+    
+}
+
+extension ViewController: CLLocationManagerDelegate {
+    func locationManager(
+        manager: CLLocationManager!,
+        locations: [AnyObject]!) {
+        if let location = locations[locations.count-1] as? CLLocation {
+            latitude = location.coordinate.latitude;
+            longitude = location.coordinate.longitude;
+        }
+    }
+    
+    func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
+        NSOperationQueue.mainQueue().addOperationWithBlock({
+            let dialog = UIAlertController(title: "Error",
+                message: "Can't get your location!",
+                preferredStyle: UIAlertControllerStyle.Alert)
+            dialog.addAction(UIAlertAction(title: "Please Try Again", style: UIAlertActionStyle.Default, handler: nil))
+            self.presentViewController(dialog, animated: false, completion: nil)
+        })    }
+
 }
 
