@@ -15,14 +15,24 @@ class OrganizationsViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let nc = NSNotificationCenter.defaultCenter()
+        nc.addObserver(self,
+                       selector: #selector(OrganizationsViewController.doSomething),
+                       name: "Blah",
+                       object: nil)
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    func doSomething(notification: NSNotification) {
+        print(notification.object as? String)
     }
     
-//    func insertNewObject(sender: AnyObject) {
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+  
+    //    func insertNewObject(sender: AnyObject) {
 //        objects.insertObject(sender, atIndex: 0)
 //        let indexPath = NSIndexPath(forRow: 0, inSection: 0)
 //        self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)

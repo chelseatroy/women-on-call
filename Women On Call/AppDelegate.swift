@@ -17,7 +17,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        let nc = NSNotificationCenter.defaultCenter()
+        nc.addObserver(self, selector: #selector(AppDelegate.doSomething), name: "Blah", object: nil)
         return true
+    }
+    
+    func doSomething() {
+        print("GADDDDDD")
     }
 
     func applicationWillResignActive(application: UIApplication) {

@@ -43,7 +43,6 @@ class ViewController: UIViewController {
         ) { result in
             switch result {
             case let .Success(loginResponse):
-                
                 getOrganizations(
                     loginResponse.apiKey,
                     inCity: "Chicago"
@@ -64,7 +63,12 @@ class ViewController: UIViewController {
                                     
                                     let vc : OrganizationsViewController! = self.storyboard!.instantiateViewControllerWithIdentifier("organizationsViewController") as! OrganizationsViewController
                                     vc.postings = postings
+                                    
                                     self.showViewController(vc, sender: vc)
+                                    
+                                    let nc = NSNotificationCenter.defaultCenter()
+                                    nc.postNotificationName("Blah", object: "HALLOOOOOOOOOO")
+
                                 }
                             case .Failure:
                                 print("oh no")
